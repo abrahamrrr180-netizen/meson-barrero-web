@@ -5,7 +5,9 @@ https://abrahamrrr180-netizen.github.io/meson-barrero-web/
 
 ## Estructura
 - `index.html` — página principal (ES; selector ES/PT/EN en la cabecera).
+- `robledillo-de-gata.html` — guía del pueblo (SEO turístico), enlaza al mesón.
 - `aviso-legal.html`, `privacidad.html`, `404.html`.
+- `meson-barrero.vcf` — tarjeta de contacto descargable; `manifest.webmanifest`.
 - `css/styles.css` — estilos (paleta verde bosque / marfil / oro envejecido / marrón carbón).
 - `js/i18n.js` — traducciones; `js/main.js` — cabecera, idioma, horario, carta, WhatsApp.
 - `fonts/` — Cormorant Garamond y Manrope (woff2 variables, servidas desde el propio sitio).
