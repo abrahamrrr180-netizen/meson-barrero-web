@@ -288,3 +288,18 @@ details p{color:var(--fg-2);padding-top:.6rem;max-width:66ch}
 .legal-page h2{font-size:1.5rem;margin-top:1.5rem}
 .legal-page p,.legal-page li{color:var(--fg-2)}
 .legal-page .pending{background:var(--surface);border:1px dashed var(--accent);border-radius:var(--r);padding:.9rem 1.1rem;color:var(--fg)}
+
+/* Impresión: la carta y los datos de contacto, sin cabecera flotante ni fotos grandes */
+@media print{
+  .site-header,.bar,.skip,.strip,.hero picture,.hero::after,.status,.lang,.cat-nav,.mapcard,.photo,.plan-item img{display:none!important}
+  .hero{min-height:0;color:#000;background:none;display:block}
+  .hero .wrap{padding:0}
+  .hero h1,.hero h1 em,.hero .sub,.hero .kicker,.hero .meta{color:#000}
+  body{background:#fff;color:#000;font-size:11pt}
+  section{padding-block:1rem;break-inside:avoid}
+  .pueblo,.site-footer{background:none;color:#000}
+  .pueblo *,.site-footer *{color:#000!important}
+  a{text-decoration:none;color:inherit}
+  .d{break-inside:avoid}
+  .cols{grid-template-columns:1fr 1fr}
+}

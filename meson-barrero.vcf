@@ -1,0 +1,12 @@
+BEGIN:VCARD
+VERSION:3.0
+N:;Mesón Barrero;;;
+FN:Mesón Barrero
+ORG:Mesón Barrero
+TEL;TYPE=CELL,VOICE:+34654794293
+TEL;TYPE=WORK,VOICE:+34927671122
+ADR;TYPE=WORK:;;Calle Barrero, 20;Robledillo de Gata;Cáceres;10867;España
+URL:https://abrahamrrr180-netizen.github.io/meson-barrero-web/
+NOTE:Asador en Robledillo de Gata (Sierra de Gata). Todos los días 11:00–22:00. Reservas por teléfono o WhatsApp.
+GEO:40.3216618;-6.4710743
+END:VCARD

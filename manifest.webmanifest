@@ -1,0 +1,15 @@
+{
+  "name": "Mesón Barrero · Robledillo de Gata",
+  "short_name": "Mesón Barrero",
+  "description": "Asador familiar en Robledillo de Gata, Sierra de Gata. Carta, horario, reservas y cómo llegar.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "browser",
+  "lang": "es",
+  "background_color": "#F3EBDD",
+  "theme_color": "#26392E",
+  "icons": [
+    { "src": "apple-touch-icon.png", "sizes": "180x180", "type": "image/png" },
+    { "src": "favicon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ]
+}
