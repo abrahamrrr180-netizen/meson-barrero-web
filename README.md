@@ -10,7 +10,7 @@ https://abrahamrrr180-netizen.github.io/meson-barrero-web/
 - `meson-barrero.vcf` — tarjeta de contacto descargable; `manifest.webmanifest`.
 - `css/styles.css` — estilos (paleta verde bosque / marfil / oro envejecido / marrón carbón).
 - `js/i18n.js` — traducciones; `js/main.js` — cabecera, idioma, horario, carta, WhatsApp.
-- `fonts/` — Cormorant Garamond y Manrope (woff2 variables, servidas desde el propio sitio).
+- `fonts/` — Cormorant Garamond y Manrope (woff2 variables, servidas desde el propio sitio), **subseteadas** a los caracteres de `fonts/subset-chars.txt`. Si se añade texto con caracteres nuevos (p. ej. otro idioma), regenerar con `pyftsubset` a partir de los woff2 completos de Google Fonts.
 - `img/` — fotos en WebP a varios tamaños + `og.jpg` para compartir.
 - `robots.txt`, `sitemap.xml`, `favicon.svg`, `favicon.png`, `apple-touch-icon.png`, `.nojekyll`.
 
