@@ -15,6 +15,7 @@ https://abrahamrrr180-netizen.github.io/meson-barrero-web/
 - `robots.txt`, `sitemap.xml`, `favicon.svg`, `favicon.png`, `apple-touch-icon.png`, `.nojekyll`.
 
 ## Mantenimiento
+- **Franjas de servicio** (modo "en el restaurante"): `js/main.js`, constante `MEALS` (comidas 13–16, cenas 20–22). En servicio el hero prioriza "Llamar"; abierto fuera de servicio, "Reservar mesa"; cerrado, "Consultar disponibilidad" por WhatsApp.
 - **Horario**: `js/main.js`, constante `H` (minutos desde medianoche por día, 0 = domingo). Cambiar también el texto del hero, la FAQ y el JSON-LD de `index.html`.
 - **Carta**: bloques `.grp` en `index.html`. Cada plato es un `.d`. Añadir la traducción en `js/i18n.js` (fila `[es, pt, en]`).
 - **Fotos del restaurante**: añadir en `img/` como WebP (~80 de calidad) y referenciarlas en `index.html`; sustituir también `img/og.jpg`.
