@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://abrahamrrr180-netizen.github.io/meson-barrero-web/sitemap.xml

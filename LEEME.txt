@@ -1,4 +1,0 @@
-Web del Mesón Barrero (Robledillo de Gata)
-- Abre index.html en el navegador o sube la carpeta entera (index.html + img/) a cualquier hosting.
-- Las fotos del pueblo son de Wikimedia Commons (licencias CC, créditos en el pie de la web).
-- La foto de la fachada (img/meson.jpg) es de Flickr, de --MARCO POLO--, todos los derechos reservados: hay que pedir permiso o sustituirla por una foto propia antes de publicar.
