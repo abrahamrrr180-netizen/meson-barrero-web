@@ -268,6 +268,8 @@ details p{color:var(--fg-2);padding-top:.6rem;max-width:66ch}
   .bar{display:grid;grid-template-columns:1.15fr 1fr 1fr 1fr;gap:6px;position:fixed;left:0;right:0;bottom:0;z-index:30;padding:10px max(12px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(12px,env(safe-area-inset-left,0px));background:color-mix(in srgb,var(--bg) 94%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-top:1px solid var(--line)}
   .bar a{display:grid;place-items:center;min-height:48px;padding:10px 2px;border-radius:var(--r);font-size:.82rem;font-weight:700;border:1px solid var(--line);background:var(--surface);text-decoration:none;white-space:nowrap}
   .bar a.call{background:var(--band);color:var(--on-band);border-color:var(--band)}
+  body[data-mode="service"] .bar{grid-template-columns:1.8fr 1fr 1fr 1fr}
+  body[data-mode="closed"] .bar a.wa{background:var(--gold);color:#1F1811;border-color:var(--gold)}
   .hero{min-height:84svh}
   .hero .wrap{padding-block:0 2rem}
   .hero h1{font-size:clamp(3rem,15vw,4.4rem)}

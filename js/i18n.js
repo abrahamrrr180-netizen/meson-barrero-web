@@ -2,13 +2,13 @@
 window.I18N = {
   langs: ['es','pt','en'],
   ui: {
-    es:{open:'Abierto ahora · cierra a las ',closed:'Cerrado ahora',opens:' · abre ',today:'hoy',tomorrow:'mañana',on:'el ',closedDay:'Cerrado',copied:'Copiado',selectCopy:'Selecciona y copia',
+    es:{meal:'Abierto · servicio de comidas hasta las ',dinner:'Abierto · servicio de cenas hasta las ',open:'Abierto ahora · cierra a las ',closed:'Cerrado ahora',opens:' · abre ',today:'hoy',tomorrow:'mañana',on:'el ',closedDay:'Cerrado',copied:'Copiado',selectCopy:'Selecciona y copia',
         days:['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'],
         wa:'Hola, quería consultar disponibilidad en el Mesón Barrero.\nFecha: \nHora: \nPersonas: \nComedor o terraza: \nGracias.'},
-    pt:{open:'Aberto agora · fecha às ',closed:'Fechado agora',opens:' · abre ',today:'hoje',tomorrow:'amanhã',on:'',closedDay:'Fechado',copied:'Copiado',selectCopy:'Selecione e copie',
+    pt:{meal:'Aberto · almoços até às ',dinner:'Aberto · jantares até às ',open:'Aberto agora · fecha às ',closed:'Fechado agora',opens:' · abre ',today:'hoje',tomorrow:'amanhã',on:'',closedDay:'Fechado',copied:'Copiado',selectCopy:'Selecione e copie',
         days:['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado'],
         wa:'Olá, queria consultar disponibilidade no Mesón Barrero.\nData: \nHora: \nPessoas: \nSala ou esplanada: \nObrigado.'},
-    en:{open:'Open now · closes at ',closed:'Closed now',opens:' · opens ',today:'today',tomorrow:'tomorrow',on:'on ',closedDay:'Closed',copied:'Copied',selectCopy:'Select and copy',
+    en:{meal:'Open · lunch served until ',dinner:'Open · dinner served until ',open:'Open now · closes at ',closed:'Closed now',opens:' · opens ',today:'today',tomorrow:'tomorrow',on:'on ',closedDay:'Closed',copied:'Copied',selectCopy:'Select and copy',
         days:['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'],
         wa:'Hello, I would like to check availability at Mesón Barrero.\nDate: \nTime: \nPeople: \nDining room or terrace: \nThank you.'}
   },
@@ -246,6 +246,7 @@ window.I18N = {
 ["Ver la carta","Ver a ementa","See the menu"],
 ["Llamar · 654 79 42 93","Ligar · 654 79 42 93","Call · 654 79 42 93"],
 ["Llamar","Ligar","Call"],
-["Llegar","Chegar","Directions"]
+["Llegar","Chegar","Directions"],
+["Ver la carta de hoy","Ver a ementa de hoje","See today's menu"]
   ]
 };

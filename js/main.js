@@ -57,6 +57,21 @@
     if (wk in wd) { d = wd[wk]; mins = hh * 60 + mm; }
   } catch (e) { /* sin Intl: hora local del visitante */ }
   var ul = document.getElementById('hours'), st = document.getElementById('status'), txt = document.getElementById('status-text');
+  /* Franjas de servicio (hora de Madrid): comidas 13:00–16:00, cenas 20:00–22:00 */
+  var MEALS = [[780, 960, 'meal'], [1200, 1320, 'dinner']];
+  function mealNow() { for (var i = 0; i < MEALS.length; i++) if (mins >= MEALS[i][0] && mins < MEALS[i][1]) return MEALS[i]; return null; }
+  /* Botones del hero según el momento: en servicio → llamar; abierto → reservar; cerrado → consultar por WhatsApp */
+  var ctaMain = document.getElementById('cta-main'), ctaAlt = document.getElementById('cta-alt');
+  function setCta(mode) {
+    if (!ctaMain || !ctaAlt) return;
+    var t = function (es) { return (map[es] && map[es][lang]) || es; };
+    ctaMain.classList.remove('wa');
+    if (mode === 'service') { ctaMain.href = 'tel:+34654794293'; ctaMain.textContent = t('Llamar · 654 79 42 93'); ctaAlt.href = '#carta'; ctaAlt.textContent = t('Ver la carta de hoy'); }
+    else if (mode === 'open') { ctaMain.href = '#reservas'; ctaMain.textContent = t('Reservar mesa'); ctaAlt.href = '#carta'; ctaAlt.textContent = t('Descubrir la carta'); }
+    else { ctaMain.href = waLink(lang); ctaMain.classList.add('wa'); ctaMain.target = '_blank'; ctaMain.rel = 'noopener'; ctaMain.textContent = t('Consultar disponibilidad'); ctaAlt.href = '#carta'; ctaAlt.textContent = t('Descubrir la carta'); }
+    if (mode !== 'closed') { ctaMain.removeAttribute('target'); ctaMain.removeAttribute('rel'); }
+    document.body.setAttribute('data-mode', mode);
+  }
   function renderHours() {
     var U = I.ui[lang] || I.ui.es, names = U.days || [];
     if (ul) {
@@ -72,8 +87,10 @@
     var open = false, closesAt = null;
     H[d].forEach(function (r) { if (mins >= r[0] && mins < r[1]) { open = true; closesAt = r[1]; } });
     st.classList.remove('open', 'closed');
-    if (open) { st.classList.add('open'); txt.textContent = U.open + fmt(closesAt); }
-    else {
+    var meal = open ? mealNow() : null;
+    if (open) { st.classList.add('open'); txt.textContent = meal ? U[meal[2]] + fmt(Math.min(meal[1], closesAt)) : U.open + fmt(closesAt); }
+    setCta(!open ? 'closed' : meal ? 'service' : 'open');
+    if (!open) {
       st.classList.add('closed'); var nextTxt = '';
       for (var k = 0; k < 7 && !nextTxt; k++) {
         var di = (d + k) % 7, rs = H[di];
