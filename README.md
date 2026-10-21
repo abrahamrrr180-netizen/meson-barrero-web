@@ -15,7 +15,7 @@ https://abrahamrrr180-netizen.github.io/meson-barrero-web/
 ## Mantenimiento
 - **Horario**: `js/main.js`, constante `H` (minutos desde medianoche por día, 0 = domingo). Cambiar también el texto del hero, la FAQ y el JSON-LD de `index.html`.
 - **Carta**: bloques `.grp` en `index.html`. Cada plato es un `.d`. Añadir la traducción en `js/i18n.js` (fila `[es, pt, en]`).
-- **Fotos del restaurante**: sustituir `img/meson-*.webp` y `img/og.jpg`; comprimir a WebP ~80 de calidad.
+- **Fotos del restaurante**: añadir en `img/` como WebP (~80 de calidad) y referenciarlas en `index.html`; sustituir también `img/og.jpg`.
 - **Datos legales**: rellenar los bloques "pendiente" de `aviso-legal.html` y `privacidad.html`.
 
 ## Publicar
@@ -23,5 +23,5 @@ https://abrahamrrr180-netizen.github.io/meson-barrero-web/
 La versión anterior está en la rama `backup-v1`.
 
 ## Créditos de imágenes
-Fotos de Robledillo vía Wikimedia Commons: Joanvega (CC BY-SA 3.0), Agila13 (CC BY-SA 3.0 ES), Chemasanco (CC BY 2.0), DavidDaguerro (CC BY-SA 4.0).
-Fachada del mesón: --MARCO POLO-- (Flickr, todos los derechos reservados) — **uso pendiente de autorización**; sustituir por foto propia antes de la publicación definitiva.
+Fotos de Robledillo vía Wikimedia Commons (recortadas, misma licencia): Joanvega (CC BY-SA 3.0), Agila13 (CC BY-SA 3.0 ES), Javi/javism (CC BY-SA 2.0), DavidDaguerro (CC BY-SA 4.0).
+No hay fotos del interior ni de los platos: pedirlas al propietario.
