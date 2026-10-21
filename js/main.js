@@ -44,7 +44,13 @@
     renderHours();
     try { localStorage.setItem('mb-lang', l); } catch (e) { /* almacenamiento no disponible: se ignora */ }
   }
-  document.querySelectorAll('.lang button').forEach(function (b) { b.addEventListener('click', function () { setLang(b.dataset.lang); }); });
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll('.lang button').forEach(function (b) { b.addEventListener('click', function () {
+    if (reduce || b.dataset.lang === lang) { setLang(b.dataset.lang); return; }
+    var els = document.querySelectorAll('main, footer');
+    els.forEach(function (e) { e.classList.add('fading'); });
+    setTimeout(function () { setLang(b.dataset.lang); els.forEach(function (e) { e.classList.remove('fading'); }); }, 150);
+  }); });
 
   /* Horario: todos los días 11:00–22:00 (minutos desde medianoche, hora de Madrid) */
   var H = { 0: [[660, 1320]], 1: [[660, 1320]], 2: [[660, 1320]], 3: [[660, 1320]], 4: [[660, 1320]], 5: [[660, 1320]], 6: [[660, 1320]] };

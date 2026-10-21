@@ -245,6 +245,13 @@ window.I18N = {
 ["Estamos en una de las entradas del pueblo. Carne ibérica a la brasa, tablas de la sierra y flan de castañas, con el valle delante del comedor. Todos los días de 11 a 22 h.","Estamos numa das entradas da aldeia. Carne ibérica na brasa, tábuas da serra e pudim de castanha, com o vale em frente à sala. Todos os dias das 11 às 22 h.","We are at one of the entrances to the village. Charcoal-grilled Iberian pork, mountain boards and chestnut flan, with the valley in front of the dining room. Every day from 11 to 22 h."],
 ["Ver la carta","Ver a ementa","See the menu"],
 ["Llamar · 654 79 42 93","Ligar · 654 79 42 93","Call · 654 79 42 93"],
+["Mesón Barrero · Asador en Robledillo de Gata","Mesón Barrero · Grelhados em Robledillo de Gata","Mesón Barrero · Grill house in Robledillo de Gata"],
+["La brasa,","A brasa,","The grill,"],
+["al fondo del valle","no fundo do vale","at the end of the valley"],
+["Noventa vecinos, un río bajo las casas","Noventa habitantes, um rio por baixo das casas","Ninety residents, a river beneath the houses"],
+["y una brasa encendida.","e uma brasa acesa.","and a lit grill."],
+["Robledillo de Gata · Sierra de Gata","Robledillo de Gata · Sierra de Gata","Robledillo de Gata · Sierra de Gata"],
+["El agua pasa por debajo de las casas","A água passa por baixo das casas","The water runs beneath the houses"],
 ["Llamar","Ligar","Call"],
 ["Llegar","Chegar","Directions"],
 ["Ver la carta de hoy","Ver a ementa de hoje","See today's menu"]
