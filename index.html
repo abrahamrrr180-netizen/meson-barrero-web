@@ -82,6 +82,13 @@ header.solid{color:var(--fg);background:color-mix(in srgb,var(--bg) 88%,transpar
 .nav ul a:hover{opacity:1}
 .nav .btn{padding:.6rem 1rem;font-size:.95rem}
 @media (min-width:860px){.nav ul{display:flex}}
+.nav-right{display:flex;align-items:center;gap:.6rem}
+.lang{display:inline-flex;border:1px solid rgba(255,255,255,.45);border-radius:999px;padding:2px;backdrop-filter:blur(6px)}
+header.solid .lang{border-color:var(--line)}
+.lang button{appearance:none;border:0;background:transparent;color:inherit;font:inherit;font-size:.78rem;font-weight:700;letter-spacing:.06em;padding:.35rem .6rem;border-radius:999px;cursor:pointer;opacity:.75}
+.lang button[aria-pressed="true"]{background:rgba(255,255,255,.22);opacity:1}
+header.solid .lang button[aria-pressed="true"]{background:var(--ember);color:#fff}
+@media (max-width:420px){.nav .btn{padding:.6rem .8rem;font-size:.9rem}.lang button{padding:.35rem .5rem}}
 
 /* Hero a sangre */
 .hero{position:relative;min-height:88svh;color:#fff;display:grid;align-items:end;padding:0;overflow:hidden}
@@ -262,7 +269,12 @@ footer .credits{font-size:.75rem;line-height:1.6;max-width:90ch}
       <li><a href="#robledillo">Robledillo</a></li>
       <li><a href="#llegar">Cómo llegar</a></li>
     </ul>
-    <a class="btn btn-primary" href="tel:+34654794293">Llama ya</a>
+    <div class="nav-right">
+      <div class="lang" role="group" aria-label="Idioma / Língua / Language">
+        <button type="button" data-lang="es" aria-pressed="true" lang="es">ES</button><button type="button" data-lang="pt" aria-pressed="false" lang="pt">PT</button><button type="button" data-lang="en" aria-pressed="false" lang="en">EN</button>
+      </div>
+      <a class="btn btn-primary" href="tel:+34654794293">Llama ya</a>
+    </div>
   </div>
 </header>
 
@@ -520,15 +532,197 @@ footer .credits{font-size:.75rem;line-height:1.6;max-width:90ch}
 </script>
 
 <script>
+/* Traducciones: [español, português, english]. El español es el texto fuente del HTML. */
+window.I18N = {
+  langs: ['es','pt','en'],
+  names: {es:'ES', pt:'PT', en:'EN'},
+  ui: {
+    es:{open:'Abierto ahora · cierra a las ',closed:'Cerrado ahora',opens:' · abre ',today:'hoy',tomorrow:'mañana',on:'el ',closedDay:'Cerrado',copied:'Copiado',selectCopy:'Selecciona y copia',days:['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado']},
+    pt:{open:'Aberto agora · fecha às ',closed:'Fechado agora',opens:' · abre ',today:'hoje',tomorrow:'amanhã',on:'',closedDay:'Fechado',copied:'Copiado',selectCopy:'Selecione e copie',days:['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado']},
+    en:{open:'Open now · closes at ',closed:'Closed now',opens:' · opens ',today:'today',tomorrow:'tomorrow',on:'on ',closedDay:'Closed',copied:'Copied',selectCopy:'Select and copy',days:['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday']}
+  },
+  dict: [
+["Carta","Ementa","Menu"],
+["El mesón","O restaurante","The inn"],
+["Robledillo","Robledillo","Robledillo"],
+["Cómo llegar","Como chegar","Getting here"],
+["Llama ya","Ligue já","Call now"],
+["Consultando horario…","A consultar o horário…","Checking opening hours…"],
+["Asador familiar en Robledillo de Gata. Carne ibérica a la brasa, tablas de la sierra y flan de castañas, con el valle del Árrago desde el comedor.","Grelhados em família em Robledillo de Gata. Carne ibérica na brasa, tábuas da serra e pudim de castanha, com o vale do Árrago visto da sala.","Family-run grill house in Robledillo de Gata. Charcoal-grilled Iberian pork, mountain cheese and charcuterie boards and chestnut flan, with the Árrago valley below the dining room."],
+["Llamar · 654 79 42 93","Ligar · 654 79 42 93","Call · 654 79 42 93"],
+["Ver la carta","Ver a ementa","See the menu"],
+["Restaurante · Sierra de Gata","Restaurante · Sierra de Gata","Restaurant · Sierra de Gata"],
+["Todos los días · 11:00–22:00","Todos os dias · 11:00–22:00","Every day · 11:00–22:00"],
+["Dónde comer en Robledillo de Gata","Onde comer em Robledillo de Gata","Where to eat in Robledillo de Gata"],
+["Producto de la sierra y raciones para compartir.","Produto da serra e doses para partilhar.","Mountain produce and plates to share."],
+["Cocina casera de siempre.","Cozinha caseira de sempre.","Home cooking, the way it has always been."],
+["Google · +550 reseñas","Google · +550 avaliações","Google · 550+ reviews"],
+["por persona con vino y postre","por pessoa com vinho e sobremesa","per person with wine and dessert"],
+["abierto a diario","aberto todos os dias","open every day"],
+["Desde el Molino del Medio","Vista do Molino del Medio","Seen from the Molino del Medio"],
+["El pueblo, encajonado en el valle del Árrago","A aldeia, encaixada no vale do Árrago","The village, tucked into the Árrago valley"],
+["La plaza del Ayuntamiento","A praça da Câmara","The town hall square"],
+["Caminos de piedra hacia la sierra","Caminhos de pedra para a serra","Stone paths up into the hills"],
+["Lo que más se pide","O que mais se pede","What people order most"],
+["De la brasa a la mesa,","Da brasa para a mesa,","From the grill to the table,"],
+["para compartir","para partilhar","to share"],
+["Pluma, presa y secreto","Pluma, presa e secreto","Pluma, presa and secreto"],
+["Ibérico a la brasa, al punto. Lo primero que recomiendan quienes repiten.","Ibérico na brasa, no ponto. A primeira coisa que recomenda quem volta.","Iberian pork cuts off the grill, cooked to order. The first thing returning guests recommend."],
+["Tablas de la sierra","Tábuas da serra","Mountain boards"],
+["Quesos, embutido ibérico y jamón para el centro de la mesa mientras sale la carne.","Queijos, enchidos ibéricos e presunto para o centro da mesa enquanto a carne não chega.","Cheeses, Iberian cured meats and ham for the middle of the table while the grill works."],
+["Chuletón y cordero","Costeleta e borrego","Rib steak and lamb"],
+["Chuletón de ternera para dos o tres, entrecot, solomillo y chuletitas de cordero.","Costeleta de vitela para dois ou três, entrecosto, lombo e costeletas de borrego.","Beef rib steak for two or three, entrecôte, tenderloin and lamb chops."],
+["Flan de castañas","Pudim de castanha","Chestnut flan"],
+["El postre de Robledillo, con las castañas de los castañares que rodean el pueblo.","A sobremesa de Robledillo, com as castanhas dos soutos que rodeiam a aldeia.","Robledillo's own dessert, made with chestnuts from the groves around the village."],
+["La","A","The"],
+["carta","ementa","menu"],
+["Cocina tradicional extremeña.","Cozinha tradicional da Extremadura.","Traditional Extremaduran cooking."],
+["Para empezar","Para começar","To start"],
+["Tabla de quesos","Tábua de queijos","Cheese board"],
+["la casa","da casa","house favourite"],
+["Compartir","Partilhar","To share"],
+["Quesos de la sierra. La que más repiten las mesas.","Queijos da serra. A que mais se repete nas mesas.","Mountain cheeses. The board tables order again and again."],
+["Tabla de ibéricos","Tábua de ibéricos","Iberian charcuterie board"],
+["Embutido ibérico y jamón.","Enchidos ibéricos e presunto.","Iberian cured meats and ham."],
+["Jamón","Presunto","Ham"],
+["Ensalada mixta","Salada mista","Mixed salad"],
+["Vegetariana","Vegetariana","Vegetarian"],
+["Lechuga, tomate, cebolla, atún, maíz, zanahoria y remolacha.","Alface, tomate, cebola, atum, milho, cenoura e beterraba.","Lettuce, tomato, onion, tuna, sweetcorn, carrot and beetroot."],
+["Ensalada de naranja","Salada de laranja","Orange salad"],
+["Receta típica de Sierra de Gata, con aceite de la zona.","Receita típica da Sierra de Gata, com azeite da região.","A Sierra de Gata classic, with local olive oil."],
+["Gazpacho","Gaspacho","Gazpacho"],
+["Verano","Verão","Summer"],
+["Sopa de ajo","Sopa de alho","Garlic soup"],
+["Invierno","Inverno","Winter"],
+["De cazuela","De tacho","From the pot"],
+["Cabrito a la cazuela","Cabrito no tacho","Kid goat stew"],
+["Preguntar","Perguntar","Ask"],
+["Caldereta de cabrito al estilo de la comarca. Conviene preguntar si lo hay ese día.","Caldeirada de cabrito à moda da região. Convém perguntar se há nesse dia.","Kid goat stew the local way. Worth asking whether it is on that day."],
+["Carrilleras a la plancha","Bochechas grelhadas","Grilled pork cheeks"],
+["A la brasa","Na brasa","From the grill"],
+["Pluma ibérica","Pluma ibérica","Iberian pluma"],
+["La favorita. Se corta sin cuchillo.","A favorita. Corta-se sem faca.","The favourite. No knife needed."],
+["Presa ibérica","Presa ibérica","Iberian presa"],
+["Secreto ibérico","Secreto ibérico","Iberian secreto"],
+["Chuletón de ternera","Costeleta de vitela","Beef rib steak"],
+["Para 2–3","Para 2–3","For 2–3"],
+["Pregunta el peso antes de encargarlo.","Pergunte o peso antes de pedir.","Ask the weight before ordering."],
+["Entrecot de ternera","Entrecosto de vitela","Beef entrecôte"],
+["Solomillo de ternera","Lombo de vitela","Beef tenderloin"],
+["Chuletitas de cordero","Costeletas de borrego","Lamb chops"],
+["Postres caseros","Sobremesas caseiras","Homemade desserts"],
+["Natillas","Natas doces","Custard"],
+["Mousse de chocolate","Mousse de chocolate","Chocolate mousse"],
+["Pastel de limón","Bolo de limão","Lemon cake"],
+["Flan casero","Pudim caseiro","Homemade flan"],
+["Bodega","Garrafeira","Drinks"],
+["Vino de Robledillo","Vinho de Robledillo","Robledillo wine"],
+["En el pueblo se hace vino de pitarra y aceite. Pide el de la casa.","Na aldeia faz-se vinho de pitarra e azeite. Peça o da casa.","The village makes its own pitarra wine and olive oil. Ask for the house wine."],
+["Cerveza, refrescos, café y licores","Cerveja, refrigerantes, café e licores","Beer, soft drinks, coffee and spirits"],
+["Alérgenos","Alergénios","Allergens"],
+[": pregunta al personal antes de pedir. La carta cambia con la temporada; esta lista es orientativa.",": pergunte à equipa antes de pedir. A ementa muda com a estação; esta lista é indicativa.",": ask the staff before ordering. The menu changes with the season; this list is a guide."],
+["Bar abajo,","Bar em baixo,","Bar downstairs,"],
+["comedor arriba","sala em cima","dining room upstairs"],
+["Un mesón de familia en una de las entradas del pueblo. Entras por el bar, tomas el vino y la tapa, y para comer te acompañan al salón de la planta de arriba, con el pueblo y la montaña delante.","Uma casa de família numa das entradas da aldeia. Entra-se pelo bar, bebe-se o vinho com a tapa e, para comer, acompanham-no à sala do andar de cima, com a aldeia e a montanha em frente.","A family-run inn at one of the entrances to the village. You come in through the bar, have a glass of wine and a tapa, and for lunch they take you up to the dining room, with the village and the mountains in front of you."],
+["Comedor con vistas","Sala com vista","Dining room with a view"],
+["Salón pequeño en la planta alta. Para grupos, reserva con unos días de margen.","Sala pequena no andar de cima. Para grupos, reserve com alguns dias de antecedência.","A small upstairs room. For groups, book a few days ahead."],
+["Terraza","Esplanada","Terrace"],
+["Para el vino de antes o el picoteo de la noche cuando hace bueno.","Para o vinho de antes ou o petisco da noite quando está bom tempo.","For a drink beforehand or an evening bite when the weather is good."],
+["Chimenea en invierno","Lareira no inverno","Fireplace in winter"],
+["Robledillo está en la sierra y en noviembre huele a castañas asadas. Aquí se come caliente.","Robledillo fica na serra e em novembro cheira a castanhas assadas. Aqui come-se quente.","Robledillo is up in the hills and in November it smells of roasting chestnuts. Here the food is hot."],
+["Tronas y comida para llevar","Cadeiras de bebé e comida para levar","High chairs and takeaway"],
+["Tronas para los pequeños. Si quieres llevarte la comida, llama y encárgala.","Cadeiras para os mais pequenos. Se quiser levar a comida, ligue e encomende.","High chairs for the little ones. For takeaway, call and order ahead."],
+["Tarjeta y Bizum","Cartão e Bizum","Card and Bizum"],
+["Puedes pagar con tarjeta, Bizum o efectivo.","Pode pagar com cartão, Bizum ou dinheiro.","You can pay by card, Bizum or cash."],
+["El Barrero, en la entrada del pueblo, con la terraza en la calle","O Barrero, à entrada da aldeia, com a esplanada na rua","The Barrero at the entrance to the village, with its terrace on the street"],
+["Un plan de día que acaba en la mesa","Um plano de dia que acaba à mesa","A day out that ends at the table"],
+["Robledillo tiene 90 vecinos, es Conjunto Histórico y está en la lista de los Pueblos Más Bonitos de España. Casas de pizarra y madera con el río Árrago pasando por debajo. Se recorre en una mañana y da hambre.","Robledillo tem 90 habitantes, é Conjunto Histórico e está na lista das Aldeias Mais Bonitas de Espanha. Casas de xisto e madeira com o rio Árrago a passar por baixo. Percorre-se numa manhã e abre o apetite.","Robledillo has 90 residents, is a protected historic site and is on the list of Spain's Most Beautiful Villages. Slate-and-timber houses with the Árrago river running underneath. You can walk it in a morning, and it makes you hungry."],
+["Mañana","Manhã","Morning"],
+["Callejear y el Museo del Aceite","Passear e o Museu do Azeite","Wander the lanes and the Olive Oil Museum"],
+["Pasadizos de madera, balcones con flores y el Molino del Medio, un molino rehabilitado con visita guiada y cata de aceite. La iglesia de la Asunción, del siglo XVI, está en el centro.","Passadiços de madeira, varandas floridas e o Molino del Medio, um lagar recuperado com visita guiada e prova de azeite. A igreja da Assunção, do século XVI, fica no centro.","Timber passageways, flower-filled balconies and the Molino del Medio, a restored oil mill with guided tours and tastings. The 16th-century church of the Assumption is in the centre."],
+["Mediodía","Almoço","Lunchtime"],
+["Comer en el Barrero","Almoçar no Barrero","Lunch at the Barrero"],
+["Estamos en una de las entradas del pueblo. Reserva para el comedor y ven con ganas de carne; luego, el flan de castañas.","Estamos numa das entradas da aldeia. Reserve para a sala e venha com vontade de carne; depois, o pudim de castanha.","We are at one of the entrances to the village. Book the dining room and come hungry for meat; then the chestnut flan."],
+["Tarde","Tarde","Afternoon"],
+["Río, piscina natural o sendero","Rio, piscina natural ou trilho","River, natural pool or a walk"],
+["En verano, la piscina natural en lo alto del casco urbano. El resto del año, el camino de Santo Tomé entre bosque, o el Chorro de la Ovejuela, una cascada de unos 70 metros a pocos minutos.","No verão, a piscina natural no alto da aldeia. No resto do ano, o caminho de Santo Tomé pelo bosque, ou o Chorro de la Ovejuela, uma cascata de uns 70 metros a poucos minutos.","In summer, the natural pool at the top of the village. The rest of the year, the Santo Tomé woodland path, or the Chorro de la Ovejuela, a 70-metre waterfall a few minutes away."],
+["al lado","ao lado","next door"],
+["Reservas","Reservas","Bookings"],
+["Llama y te","Ligue e","Call and we'll"],
+["guardamos mesa","guardamos-lhe mesa","keep you a table"],
+["El comedor es pequeño y los fines de semana se llena. Para grupos, mejor con unos días de margen.","A sala é pequena e ao fim de semana enche. Para grupos, melhor com alguns dias de antecedência.","The dining room is small and fills up at weekends. For groups, a few days' notice is best."],
+["Teléfono","Telefone","Phone"],
+["Copiar número","Copiar número","Copy number"],
+["Llamar ahora","Ligar agora","Call now"],
+["Escribir por WhatsApp","Escrever por WhatsApp","Message on WhatsApp"],
+["También:","Também:","Also:"],
+[". Di cuántos sois, el día, la hora y si queréis comedor o terraza.",". Diga quantos são, o dia, a hora e se preferem sala ou esplanada.",". Tell us how many you are, the day, the time and whether you prefer the dining room or the terrace."],
+["Horario","Horário","Opening hours"],
+["Abierto todos los días. En temporada baja puede variar: si vienes de lejos, llama antes.","Aberto todos os dias. Na época baixa pode variar: se vier de longe, ligue antes.","Open every day. Hours may vary in low season: if you are coming from far away, call first."],
+["Dirección","Morada","Address"],
+["Antes de venir","Antes de vir","Before you come"],
+["Preguntas que nos hacen","Perguntas que nos fazem","Questions we get asked"],
+["¿Hace falta reservar en el Mesón Barrero?","É preciso reservar no Mesón Barrero?","Do I need to book at Mesón Barrero?"],
+["Entre semana se suele poder comer sin reserva. Viernes, sábados, domingos, puentes y en verano el comedor se llena: llama al 654 79 42 93 o escribe por WhatsApp y te guardamos sitio.","Durante a semana costuma ser possível comer sem reserva. Às sextas, sábados, domingos, feriados prolongados e no verão a sala enche: ligue para o 654 79 42 93 ou escreva por WhatsApp e guardamos-lhe lugar.","On weekdays you can usually eat without booking. Fridays, Saturdays, Sundays, long weekends and summer fill the dining room: call 654 79 42 93 or message us on WhatsApp and we'll keep you a table."],
+["¿Cuánto cuesta comer en Robledillo de Gata?","Quanto custa comer em Robledillo de Gata?","How much does a meal in Robledillo de Gata cost?"],
+["En el Barrero lo normal es entre 20 y 30 € por persona compartiendo tabla, carne, postre y vino. Un chuletón para dos sube un poco la cuenta.","No Barrero o normal são 20 a 30 € por pessoa partilhando tábua, carne, sobremesa e vinho. Uma costeleta para dois sobe um pouco a conta.","At the Barrero expect 20–30 € per person sharing a board, meat, dessert and wine. A rib steak for two pushes the bill up a little."],
+["¿Hay opciones si no como carne?","Há opções se não como carne?","Are there options if I don't eat meat?"],
+["La carta gira en torno a la brasa. Hay ensaladas, tabla de quesos, gazpacho en verano y sopa de ajo en invierno. Si tienes alguna alergia o intolerancia, dilo al reservar y te dicen qué se puede adaptar.","A ementa gira à volta da brasa. Há saladas, tábua de queijos, gaspacho no verão e sopa de alho no inverno. Se tiver alguma alergia ou intolerância, diga ao reservar e dizem-lhe o que se pode adaptar.","The menu is built around the grill. There are salads, a cheese board, gazpacho in summer and garlic soup in winter. If you have an allergy or intolerance, say so when booking and they will tell you what can be adapted."],
+["¿Se puede ir con niños?","Pode-se ir com crianças?","Can I bring children?"],
+["Sí. Hay tronas. Si venís en grupo con carritos, avísalo al reservar para prepararos la mesa.","Sim. Há cadeiras de bebé. Se vierem em grupo com carrinhos, avise ao reservar para prepararmos a mesa.","Yes. There are high chairs. If you are a group with pushchairs, mention it when booking so we can set up the table."],
+["¿Se puede pagar con tarjeta o Bizum?","Pode-se pagar com cartão ou Bizum?","Can I pay by card or Bizum?"],
+["Sí, aceptamos tarjeta, Bizum y efectivo.","Sim, aceitamos cartão, Bizum e dinheiro.","Yes, we take card, Bizum and cash."],
+["¿Dónde aparco en Robledillo de Gata?","Onde estaciono em Robledillo de Gata?","Where do I park in Robledillo de Gata?"],
+["El pueblo es de calles estrechas. Deja el coche en los aparcamientos de la entrada del pueblo; el mesón está en una de las entradas, a un paso.","A aldeia tem ruas estreitas. Deixe o carro nos estacionamentos à entrada da aldeia; o restaurante fica numa das entradas, a dois passos.","The village streets are narrow. Leave the car in the car parks at the entrance to the village; the inn is at one of the entrances, a short walk away."],
+["¿Hacéis comida para llevar?","Fazem comida para levar?","Do you do takeaway?"],
+["Sí. Llama y encarga; te decimos a qué hora pasar a recogerla.","Sim. Ligue e encomende; dizemos-lhe a que horas passar para levantar.","Yes. Call and order; we'll tell you what time to pick it up."],
+["En la entrada","À entrada","At the entrance"],
+["del pueblo","da aldeia","to the village"],
+["Calle Barrero, 20. Robledillo está en la cabecera del valle del Árrago, en el extremo norte de Sierra de Gata, pegado a Las Hurdes.","Calle Barrero, 20. Robledillo fica na cabeceira do vale do Árrago, no extremo norte da Sierra de Gata, junto a Las Hurdes.","Calle Barrero, 20. Robledillo sits at the head of the Árrago valley, at the northern tip of the Sierra de Gata, right next to Las Hurdes."],
+["Desde Coria o Moraleja:","De Coria ou Moraleja:","From Coria or Moraleja:"],
+["por la EX-109 hacia Villasbuenas de Gata, y en la Venta del Fraile desvío a Cadalso, Descargamaría y Robledillo.","pela EX-109 em direção a Villasbuenas de Gata e, na Venta del Fraile, desvio para Cadalso, Descargamaría e Robledillo.","take the EX-109 towards Villasbuenas de Gata and turn off at Venta del Fraile for Cadalso, Descargamaría and Robledillo."],
+["Desde Ciudad Rodrigo (Salamanca):","De Ciudad Rodrigo (Salamanca):","From Ciudad Rodrigo (Salamanca):"],
+["45 km por el puerto hacia Descargamaría.","45 km pelo porto em direção a Descargamaría.","45 km over the pass towards Descargamaría."],
+["Desde Plasencia:","De Plasencia:","From Plasencia:"],
+["alrededor de una hora por Las Hurdes o por Coria.","cerca de uma hora por Las Hurdes ou por Coria.","about an hour via Las Hurdes or via Coria."],
+["Abrir en Google Maps","Abrir no Google Maps","Open in Google Maps"],
+["Mesón Barrero · Restaurante en Robledillo de Gata, Sierra de Gata (Cáceres)","Mesón Barrero · Restaurante em Robledillo de Gata, Sierra de Gata (Cáceres)","Mesón Barrero · Restaurant in Robledillo de Gata, Sierra de Gata (Cáceres)"],
+["Fotografías de Robledillo de Gata vía Wikimedia Commons: Joanvega (CC BY-SA 3.0), Agila13 (CC BY-SA 3.0 ES), Chemasanco (CC BY 2.0), DavidDaguerro (CC BY-SA 4.0). Fachada del mesón: --MARCO POLO-- (Flickr, todos los derechos reservados; pendiente de permiso o de sustituir por foto propia). Las fotos de los platos se añadirán con las del restaurante.","Fotografias de Robledillo de Gata via Wikimedia Commons: Joanvega (CC BY-SA 3.0), Agila13 (CC BY-SA 3.0 ES), Chemasanco (CC BY 2.0), DavidDaguerro (CC BY-SA 4.0). Fachada do restaurante: --MARCO POLO-- (Flickr, todos os direitos reservados; pendente de autorização ou de substituição por foto própria).","Photographs of Robledillo de Gata via Wikimedia Commons: Joanvega (CC BY-SA 3.0), Agila13 (CC BY-SA 3.0 ES), Chemasanco (CC BY 2.0), DavidDaguerro (CC BY-SA 4.0). Inn façade: --MARCO POLO-- (Flickr, all rights reserved; pending permission or replacement with the restaurant's own photo)."],
+["Llamar","Ligar","Call"],
+["Llegar","Chegar","Directions"]
+  ]
+};
+</script>
+<script>
 (function(){
   // Cabecera: transparente sobre la foto, sólida al bajar
   var hd=document.getElementById('hdr'),hero=document.querySelector('.hero');
   function onS(){hd.classList.toggle('solid',window.scrollY>hero.offsetHeight-80);}
   onS();addEventListener('scroll',onS,{passive:true});
 
-  // Horario: todos los días 11:00–22:00
+  // ---- Idiomas ----
+  var I=window.I18N,lang='es';
+  var map={};I.dict.forEach(function(r){map[r[0]]={es:r[0],pt:r[1],en:r[2]};});
+  // Guardar el español original de cada nodo de texto
+  var nodes=[];
+  (function walk(n){
+    for(var c=n.firstChild;c;c=c.nextSibling){
+      if(c.nodeType===3){var t=c.nodeValue;if(t.trim()&&map[t.trim()])nodes.push({n:c,es:t});}
+      else if(c.nodeType===1&&c.tagName!=='SCRIPT'&&c.tagName!=='STYLE'&&c.tagName!=='SVG'&&!c.classList.contains('lang'))walk(c);
+    }
+  })(document.body);
+  function setLang(l){
+    if(!map||!I.ui[l])l='es';lang=l;
+    nodes.forEach(function(o){var k=o.es.trim(),tr=map[k][l]||k;o.n.nodeValue=o.es.replace(k,tr);});
+    document.documentElement.lang=l;
+    document.querySelectorAll('.lang button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.lang===l?'true':'false');});
+    renderHours();
+    try{localStorage.setItem('mb-lang',l);}catch(e){}
+  }
+  document.querySelectorAll('.lang button').forEach(function(b){b.addEventListener('click',function(){setLang(b.dataset.lang);});});
+
+  // ---- Horario: todos los días 11:00–22:00 ----
   var H={0:[[660,1320]],1:[[660,1320]],2:[[660,1320]],3:[[660,1320]],4:[[660,1320]],5:[[660,1320]],6:[[660,1320]]};
-  var names=['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
   function fmt(m){var h=Math.floor(m/60),mm=m%60;return h+':'+(mm<10?'0'+mm:mm);}
   var now=new Date(),d=now.getDay(),mins=now.getHours()*60+now.getMinutes();
   try{
@@ -537,25 +731,38 @@ footer .credits{font-size:.75rem;line-height:1.6;max-width:90ch}
     p.forEach(function(x){if(x.type==='weekday')wk=x.value.replace('.','').toLowerCase();if(x.type==='hour')hh=parseInt(x.value,10)%24;if(x.type==='minute')mm=parseInt(x.value,10);});
     if(wk in wd){d=wd[wk];mins=hh*60+mm;}
   }catch(e){}
-  var ul=document.getElementById('hours');[1,2,3,4,5,6,0].forEach(function(i){
-    var li=document.createElement('li');if(i===d)li.className='today';
-    var a=document.createElement('span');a.textContent=names[i];
-    var b=document.createElement('span');b.textContent=H[i].length?H[i].map(function(r){return fmt(r[0])+' – '+fmt(r[1]);}).join(', '):'Cerrado';
-    li.appendChild(a);li.appendChild(b);ul.appendChild(li);
-  });
-  var st=document.getElementById('status'),txt=document.getElementById('status-text'),open=false,closesAt=null;
-  H[d].forEach(function(r){if(mins>=r[0]&&mins<r[1]){open=true;closesAt=r[1];}});
-  if(open){st.classList.add('open');txt.textContent='Abierto ahora · cierra a las '+fmt(closesAt);}
-  else{st.classList.add('closed');var nextTxt='';
-    for(var k=0;k<7;k++){var di=(d+k)%7,rs=H[di];for(var j=0;j<rs.length;j++){if(k===0&&rs[j][0]<=mins)continue;nextTxt=(k===0?'hoy':k===1?'mañana':'el '+names[di].toLowerCase())+' a las '+fmt(rs[j][0]);break;}if(nextTxt)break;}
-    txt.textContent='Cerrado ahora'+(nextTxt?' · abre '+nextTxt:'');}
+  var ul=document.getElementById('hours'),st=document.getElementById('status'),txt=document.getElementById('status-text');
+  function renderHours(){
+    var U=I.ui[lang],names=U.days;
+    ul.innerHTML='';
+    [1,2,3,4,5,6,0].forEach(function(i){
+      var li=document.createElement('li');if(i===d)li.className='today';
+      var a=document.createElement('span');a.textContent=names[i];
+      var b=document.createElement('span');b.textContent=H[i].length?H[i].map(function(r){return fmt(r[0])+' – '+fmt(r[1]);}).join(', '):U.closedDay;
+      li.appendChild(a);li.appendChild(b);ul.appendChild(li);
+    });
+    var open=false,closesAt=null;
+    H[d].forEach(function(r){if(mins>=r[0]&&mins<r[1]){open=true;closesAt=r[1];}});
+    st.classList.remove('open','closed');
+    if(open){st.classList.add('open');txt.textContent=U.open+fmt(closesAt);}
+    else{st.classList.add('closed');var nextTxt='';
+      for(var k=0;k<7;k++){var di=(d+k)%7,rs=H[di];for(var j=0;j<rs.length;j++){if(k===0&&rs[j][0]<=mins)continue;nextTxt=(k===0?U.today:k===1?U.tomorrow:U.on+names[di].toLowerCase())+' '+fmt(rs[j][0]);break;}if(nextTxt)break;}
+      txt.textContent=U.closed+(nextTxt?U.opens+nextTxt:'');}
+  }
 
-  function copy(txt,btn,label){
-    function done(ok){btn.textContent=ok?'Copiado':'Selecciona y copia';setTimeout(function(){btn.textContent=label;},1800);}
-    try{if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(function(){done(true);},function(){done(false);});}else{done(false);}}catch(e){done(false);}
+  function copy(t,btn,label){
+    var U=I.ui[lang];
+    function done(ok){btn.textContent=ok?U.copied:U.selectCopy;setTimeout(function(){btn.textContent=map[label]?map[label][lang]:label;},1800);}
+    try{if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(function(){done(true);},function(){done(false);});}else{done(false);}}catch(e){done(false);}
   }
   var cp=document.getElementById('copy-phone');cp.addEventListener('click',function(){copy('654794293',cp,'Copiar número');});
   document.getElementById('year').textContent=new Date().getFullYear();
+
+  // Idioma inicial: guardado > navegador > español
+  var init='es';
+  try{init=localStorage.getItem('mb-lang')||'';}catch(e){}
+  if(!I.ui[init]){var nl=(navigator.language||'es').slice(0,2).toLowerCase();init=I.ui[nl]?nl:'es';}
+  setLang(init);
 })();
 </script>
 
